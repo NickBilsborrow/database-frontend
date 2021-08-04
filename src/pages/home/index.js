@@ -7,6 +7,7 @@ import { Watched } from "../../components/Watched";
 import { Add } from "../../components/Add";
 import "../../App.css";
 import "../../lib/font-awesome/css/all.min.css";
+import { Settings } from "../settings";
 
 import { GlobalProvider } from "../../context/GlobalState";
 
@@ -26,6 +27,9 @@ export const Home = () => {
             </Route>
             <Route path="/watched">
               <Watched />
+            </Route>
+            <Route path="/settings">
+              <Settings />
             </Route>
           </Switch>
         </Router>
