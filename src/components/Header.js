@@ -24,6 +24,9 @@ export const Header = () => {
               <i className="fa-fw fa fa-search"></i>Search
               </Link>
             </li>
+            <li>
+              <Link to="/settings">Settings</Link>
+            </li>
           </ul>
         </div>
       </div>

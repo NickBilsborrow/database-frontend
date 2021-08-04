@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { PageContainer } from "../../styledComponents";
 import styled from "styled-components";
 import { fetchUsers } from "../../utils";
+import { LogInput } from "../../components/LogInput";
+import { LogForm } from "../../components/logForm";
+import { LogButton } from "../../components/LogButton";
 
 export const Landing = ({ setUser }) => {
   const [newUser, setNewUser] = useState(false);
@@ -35,15 +38,4 @@ export const Landing = ({ setUser }) => {
   );
 };
 
-const LogInput = styled.input`
-  width: 20vw;
-`;
 
-const LogForm = styled.form`
-  width: 30vw;
-  /* text-align: center; */
-`;
-
-const LogButton = styled.button`
-  width: 15vw;
-`;
