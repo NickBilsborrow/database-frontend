@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { LogButton } from "../../components/LogButton";
 import { LogForm } from "../../components/logForm";
 import { LogInput } from "../../components/LogInput";
@@ -10,7 +10,6 @@ export const Settings = () => {
   const [newPassword, setNewPassword] = useState();
   const [oldPassword, setOldPassword] = useState();
   const [newEmail, setNewEmail] = useState();
-  const [userName, setUserName] = useState();
   const [setting,setSetting]=useState(0)
   
 
@@ -27,7 +26,7 @@ export const Settings = () => {
         <LogButton onClick={(e)=>{setSetting(2)}}>Change Password</LogButton>
         <LogButton onClick={(e)=>{setSetting(3)}}>Change email</LogButton>
         <LogButton onClick={(e)=>{setSetting(4)}}>Delete Account</LogButton>
-        { (setting == 1 )? 
+        { (setting === 1 )? 
       <div>
         <h1>Change Username</h1>
         <LogForm onSubmit={(e) => editUsername(e, oldUsername, newUsername)}>
@@ -45,7 +44,7 @@ export const Settings = () => {
         </LogForm>
       </div>
  : <div></div> }
- { (setting == 2 )? 
+ { (setting === 2 )? 
       <div>
         <h1>Change Password</h1>
         <LogForm onSubmit={(e) => editPassword(e,oldUsername, oldPassword, newPassword)}>
@@ -66,7 +65,7 @@ export const Settings = () => {
       </div>
       : <div></div> }
 
-{ (setting == 3 )? 
+{ (setting === 3 )? 
       <div>
         <h1>Change Email</h1>
         <LogForm onSubmit={(e) => editEmail(e,oldUsername, oldPassword, newEmail)}>
@@ -86,7 +85,7 @@ export const Settings = () => {
         </LogForm>
       </div>
  : <div></div> }
-{ (setting == 4 )? 
+{ (setting === 4 )? 
       <div>
         <h1>Delete Account</h1>
         <LogForm onSubmit={(e) => deleteUser(e,oldUsername, oldPassword)}>

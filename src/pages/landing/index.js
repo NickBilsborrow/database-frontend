@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { PageContainer } from "../../styledComponents";
-import styled from "styled-components";
 import { fetchUsers } from "../../utils";
 import { LogInput } from "../../components/LogInput";
 import { LogForm } from "../../components/logForm";

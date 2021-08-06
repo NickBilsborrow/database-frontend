@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { PageContainer } from "../../styledComponents";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Header } from "../../components/Header";
@@ -8,10 +8,36 @@ import { Add } from "../../components/Add";
 import "../../App.css";
 import "../../lib/font-awesome/css/all.min.css";
 import { Settings } from "../settings";
-
 import { GlobalProvider } from "../../context/GlobalState";
+import { fetchUsersMoviesWatched, fetchUsersMoviesWatchlist } from "../../utils";
 
-export const Home = () => {
+
+
+
+
+
+
+export const Home = ({user}) => {
+  const [watchedCount,setWatchedCount]=useState(0);
+  const [watchlistCount,setWatchlistCount]=useState(0);
+
+  const [watched, setWatched] = useState([]);
+
+  useEffect((
+  ) => {
+    fetchUsersMoviesWatched(user,watched, setWatched)
+  },[watchedCount])
+
+
+
+  const [watchlist, setWatchlist] = useState([]);
+
+  useEffect(() => {
+    fetchUsersMoviesWatchlist(user, watchlist, setWatchlist)},[watchlistCount])
+
+   
+
+
   return (
     <PageContainer>
       <GlobalProvider>
@@ -20,13 +46,13 @@ export const Home = () => {
 
           <Switch>
             <Route exact path="/">
-              <Watchlist />
+              <Watchlist user={user} watchlist={watchlist} watchlistCount={watchlistCount} setWatchlistCount={setWatchlistCount}/>
             </Route>
             <Route path="/add">
-              <Add />
+              <Add user={user} watched={watched} watchlist={watchlist} watchedCount={watchedCount} setWatchedCount={setWatchedCount} watchlistCount={watchlistCount} setWatchlistCount={setWatchlistCount}/>
             </Route>
             <Route path="/watched">
-              <Watched />
+            <Watched user={user} watched={watched} watchedCount={watchedCount} setWatchedCount={setWatchedCount} />
             </Route>
             <Route path="/settings">
               <Settings />

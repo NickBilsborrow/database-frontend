@@ -1,22 +1,41 @@
-import React, { useContext } from "react";
+
+import React from "react";
 import Moment from "react-moment";
-import { GlobalContext } from "../context/GlobalState";
+import { addMovieToUserWatched, addMovieToUserWatchlist } from "../utils";
 
-export const ResultCard = ({ movie }) => {
-  const { addMovieToWatchlist, addMovieToWatched, watchlist, watched } =
-    useContext(GlobalContext);
+export const ResultCard = ({ user, movie, watched, watchlist, watchlistCount, setWatchlistCount, watchedCount, setWatchedCount }) => {
+ 
+   
+    
+console.log(movie)
+console.log(watchlist[0].title,movie.title)
+      let isWatched 
+       watched.forEach((watchedMovie)=>{
+        if(watchedMovie.title === movie.title){
+          isWatched = true
+        }
+      })
+      
+     let isWatchlist 
+     watchlist.forEach((watchlistMovie)=>{
+      if(watchlistMovie.title === movie.title){
+        isWatched = true
+      }
+    })
+     
+  let watchlistDisabled 
+  if(isWatched ||isWatchlist){
+    watchlistDisabled = true
+  } else{
+    watchlistDisabled =false
+  }
 
-  let storedMovie = watchlist.find((o) => o.id === movie.id);
-  let storedMovieWatched = watched.find((o) => o.id === movie.id);
+let watchedDisabled
+  if(isWatched ){
+    watchedDisabled=true
+  }else{watchedDisabled=false}
 
-  const watchlistDisabled = storedMovie
-    ? true
-    : storedMovieWatched
-    ? true
-    : false;
-
-  const watchedDisabled = storedMovieWatched ? true : false;
-
+ 
   return (
     <div className="result-card">
       <div className="poster-wrapper">
@@ -43,7 +62,9 @@ export const ResultCard = ({ movie }) => {
           <button
             className="btn"
             disabled={watchlistDisabled}
-            onClick={() => addMovieToWatchlist(movie)}
+            onClick={() =>{
+              console.log(movie);
+              addMovieToUserWatchlist(user,movie,watchlistCount,setWatchlistCount)}}
           >
             Add to Watchlist
           </button>
@@ -51,7 +72,9 @@ export const ResultCard = ({ movie }) => {
           <button
             className="btn"
             disabled={watchedDisabled}
-            onClick={() => addMovieToWatched(movie)}
+            onClick={() =>{
+              console.log(movie);
+               addMovieToUserWatched(user,movie,watchedCount,setWatchedCount)}}
           >
             Add to Watched
           </button>
@@ -59,4 +82,5 @@ export const ResultCard = ({ movie }) => {
       </div>
     </div>
   );
-};
+
+}

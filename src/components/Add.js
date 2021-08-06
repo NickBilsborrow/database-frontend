@@ -1,7 +1,15 @@
 import React, { useState } from "react";
 import { ResultCard } from "./ResultCard";
 
-export const Add = () => {
+export const Add = ({
+  user,
+  watched,
+  watchlist,
+  watchlistCount,
+  setWatchlistCount,
+  watchedCount,
+  setWatchedCount,
+}) => {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
 
@@ -22,7 +30,7 @@ export const Add = () => {
         }
       });
   };
-
+  console.log(results);
   return (
     <div className="add-page">
       <div className="container">
@@ -40,7 +48,16 @@ export const Add = () => {
             <ul className="results">
               {results.map((movie) => (
                 <li key={movie.id}>
-                  <ResultCard movie={movie} />
+                  <ResultCard
+                    user={user}
+                    movie={movie}
+                    watched={watched}
+                    watchlist={watchlist}
+                    watchedCount={watchedCount}
+                    setWatchedCount={setWatchedCount}
+                    watchlistCount={watchlistCount}
+                    setWatchlistCount={setWatchlistCount}
+                  />
                 </li>
               ))}
             </ul>
