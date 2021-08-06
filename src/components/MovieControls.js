@@ -1,25 +1,22 @@
-import React, { useContext } from "react";
-import { GlobalContext } from "../context/GlobalState";
+import React from "react";
 
-export const MovieControls = ({ type, movie }) => {
-  const {
-    removeMovieFromWatchlist,
-    addMovieToWatched,
-    moveToWatchlist,
-    removeFromWatched,
-  } = useContext(GlobalContext);
+import { addMovieToUserWatched,  movieMoveFromWatchedToWatchlist,  removeMovieUserWatched, removeMovieUserWatchlist } from "../utils";
+
+export const MovieControls = ({ user, type, movie ,watchlistCount,setWatchlistCount,watchedCount, setWatchedCount }) => {
 
   return (
     <div className="inner-card-controls">
       {type === "watchlist" && (
         <>
-          <button className="ctrl-btn" onClick={() => addMovieToWatched(movie)}>
+          <button className="ctrl-btn" onClick={() =>{
+            console.log(movie);
+            addMovieToUserWatched(user,movie,watchedCount, setWatchedCount)}}>
             <i className="fa-fw far fa-eye"></i>
           </button>
 
           <button
             className="ctrl-btn"
-            onClick={() => removeMovieFromWatchlist(movie.id)}
+            onClick={() => removeMovieUserWatchlist(user,movie,watchlistCount,setWatchlistCount)}
           >
             <i className="fa-fw fa fa-times"></i>
           </button>
@@ -28,13 +25,13 @@ export const MovieControls = ({ type, movie }) => {
 
       {type === "watched" && (
         <>
-          <button className="ctrl-btn" onClick={() => moveToWatchlist(movie)}>
+          <button className="ctrl-btn" onClick={() => movieMoveFromWatchedToWatchlist(user,movie,watchlistCount,setWatchlistCount,watchedCount, setWatchedCount)}>
             <i className="fa-fw far fa-eye-slash"></i>
           </button>
 
           <button
             className="ctrl-btn"
-            onClick={() => removeFromWatched(movie.id)}
+            onClick={() => removeMovieUserWatched(user,movie,watchedCount, setWatchedCount)}
           >
             <i className="fa-fw fa fa-times"></i>
           </button>

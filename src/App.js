@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import styled from "styled-components";
 import { Landing } from "./pages/landing";
@@ -16,7 +16,7 @@ const App = () => {
       </Route>
 
       <Route exact path="/home">
-        <Home />
+        <Home user={user} />
       </Route>
     </AppContainer>
   );

@@ -25,7 +25,9 @@ export const Header = () => {
               </Link>
             </li>
             <li>
-              <Link to="/settings">Settings</Link>
+              <Link to="/settings">
+            <i class="fas fa-users-cog" link="/settings"></i>
+              </Link>
             </li>
           </ul>
         </div>

@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
-import { GlobalContext } from "../context/GlobalState";
+import React from "react";
+
 import { MovieCard } from "./MovieCard";
 
-export const Watchlist = () => {
-  const { watchlist } = useContext(GlobalContext);
+export const Watchlist = ({user, watchlist, watchlistCount, setWatchlistCount}) => {
+  
 
   return (
     <div className="movie-page">
@@ -19,7 +19,7 @@ export const Watchlist = () => {
         {watchlist.length > 0 ? (
           <div className="movie-grid">
             {watchlist.map((movie) => (
-              <MovieCard movie={movie} key={movie.id} type="watchlist" />
+              <MovieCard user={user} movie={movie} key={movie.id} watchlistCount={watchlistCount} setWatchlistCount={setWatchlistCount} type="watchlist" />
             ))}
           </div>
         ) : (

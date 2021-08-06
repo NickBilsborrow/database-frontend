@@ -1,7 +1,8 @@
 import React from "react";
 import { MovieControls } from "./MovieControls";
 
-export const MovieCard = ({ movie, type }) => {
+export const MovieCard = ({user, movie, type ,watchlistCount,setWatchlistCount,watchedCount, setWatchedCount}) => {
+  
   return (
     <div className="movie-card">
       <div className="overlay"></div>
@@ -11,7 +12,7 @@ export const MovieCard = ({ movie, type }) => {
         alt={`${movie.title} Poster`}
       />
 
-      <MovieControls type={type} movie={movie} />
+      <MovieControls user={user} type={type} movie={movie} watchlistCount={watchlistCount} setWatchlistCount={setWatchlistCount} watchedCount={watchedCount} setWatchedCount={setWatchedCount} />
     </div>
   );
 };
