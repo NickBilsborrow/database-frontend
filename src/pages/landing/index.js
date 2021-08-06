@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import { PageContainer } from "../../styledComponents";
+import { LandingContainer, FormContainer, SiteLogo, LogButton, LogForm, LogInput } from "../../styledComponents";
 import { fetchUsers } from "../../utils";
-import { LogInput } from "../../components/LogInput";
-import { LogForm } from "../../components/logForm";
-import { LogButton } from "../../components/LogButton";
+import "../../App.css";
 
 export const Landing = ({ setUser }) => {
   const [newUser, setNewUser] = useState(false);
@@ -12,29 +10,37 @@ export const Landing = ({ setUser }) => {
   const [pass, setPass] = useState();
 
   return (
-    <PageContainer>
-      <LogForm onSubmit={(e) => fetchUsers(e, email, userName, pass, setUser)}>
-        {newUser && (
+    <LandingContainer>
+      <SiteLogo>
+      <i className="fas fa-video"></i> MYMDb
+      </SiteLogo>
+      <FormContainer>
+        <LogForm
+          onSubmit={(e) => fetchUsers(e, email, userName, pass, setUser)}
+        >
+          {newUser && (
+            <LogInput
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
+            />
+          )}
           <LogInput
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email"
+            onChange={(e) => setUserName(e.target.value)}
+            placeholder="Username"
           />
-        )}
-        <LogInput
-          onChange={(e) => setUserName(e.target.value)}
-          placeholder="Username"
-        />
-        <LogInput
-          onChange={(e) => setPass(e.target.value)}
-          placeholder="Password"
-        />
-        <LogButton type="submit">{newUser ? "Sign Up" : "Log In"}</LogButton>
-      </LogForm>
-      <LogButton type="button" onClick={() => setNewUser(!newUser)}>
-        {newUser ? "Log In" : "Sign Up"}
-      </LogButton>
-    </PageContainer>
+          <LogInput type="password"
+            onChange={(e) => setPass(e.target.value)}
+            placeholder="Password"></LogInput>
+          <LogButton type="submit">{newUser ? "Sign Up" : "Log In"}</LogButton>
+          <LogButton
+          type="button"
+          onClick={() => setNewUser(!newUser)}
+        >
+          {newUser ? "Log In" : "Sign Up"}
+        </LogButton>
+        </LogForm>
+      </FormContainer>
+    </LandingContainer>
   );
 };
-
 
