@@ -10,6 +10,7 @@ import "../../lib/font-awesome/css/all.min.css";
 import { Settings } from "../settings";
 import { GlobalProvider } from "../../context/GlobalState";
 import { fetchUsersMoviesWatched, fetchUsersMoviesWatchlist } from "../../utils";
+import { Featured } from "../featured" 
 
 
 
@@ -45,8 +46,11 @@ export const Home = ({user}) => {
           <Header />
 
           <Switch>
-            <Route exact path="/">
-              <Watchlist user={user} watchlist={watchlist} watchlistCount={watchlistCount} setWatchlistCount={setWatchlistCount}/>
+          <Route exact path="/">
+              <Featured />
+            </Route>
+            <Route exact path="/watchlist">
+              <Watchlist user={user} watchlist={watchlist} watchlistCount={watchlistCount} setWatchlistCount={setWatchlistCount} />
             </Route>
             <Route path="/add">
               <Add user={user} watched={watched} watchlist={watchlist} watchedCount={watchedCount} setWatchedCount={setWatchedCount} watchlistCount={watchlistCount} setWatchlistCount={setWatchlistCount}/>
